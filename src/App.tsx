@@ -183,11 +183,12 @@ function App() {
           name: sensorURIData[i].name,
           bean: beanData,
           water: waterData,
+
           coffee_machine_id: sensorURIData[i].coffee_machine_id,
           water_order_limit: machineUsageData.water_supply_order_limit,
           bean_order_limit: machineUsageData.bean_supply_order_limit,
           total_bean_supply_level: machineUsageData.total_bean_supply_level,
-          ...machineUsageData
+          ...machineUsageData,
         })
 
       }
@@ -216,6 +217,7 @@ function App() {
         height: '100%'
       }}
     >
+      {/* Graph */}
       <div
         style={{
           display: 'flex',
@@ -273,42 +275,46 @@ function App() {
           </Bar>
         </BarChart>
       </div>
-      <div><div>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ backgroundColor: '#f2f2f2' }}>
-              <th>Coffee Machine ID</th>
-              <th>Water Supply Level</th>
-              <th>Total Bean Supply Level</th>
-              <th>Average Daily Bean Usage</th>
-              <th>Average Daily Water Usage</th>
-              <th>Water Supply Order Limit</th>
-              <th>Bean Supply Order Limit</th>
-              <th>Bean Supply Days</th>
-              <th>Water Supply Days</th>
-              <th>Bean Order Notify Days</th>
-              <th>Water Order Notify Days</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usageData.map((data: UsageData, index: number) => (
-              <tr key={data.coffee_machine_id} style={{ backgroundColor: index % 2 ? '#f2f2f2' : 'white' }}>
-                <td>{data.coffee_machine_id}</td>
-                <td>{data.water_supply_level}</td>
-                <td>{data.total_bean_supply_level}</td>
-                <td>{data.average_daily_bean_usage}</td>
-                <td>{data.average_daily_water_usage}</td>
-                <td>{data.water_supply_order_limit}</td>
-                <td>{data.bean_supply_order_limit}</td>
-                <td>{data.bean_supply_days.toFixed(2)}</td>
-                <td>{data.water_supply_days.toFixed(2)}</td>
-                <td>{data.bean_order_notify_days.toFixed(2)}</td>
-                <td>{data.water_order_notify_days.toFixed(2)}</td>
+
+
+      {/* Table */}
+      <div>
+        <div>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f2f2f2' }}>
+                <th>Coffee Machine ID</th>
+                <th>Water Supply Level</th>
+                <th>Total Bean Supply Level</th>
+                <th>Average Daily Bean Usage</th>
+                <th>Average Daily Water Usage</th>
+                <th>Water Supply Order Limit</th>
+                <th>Bean Supply Order Limit</th>
+                <th>Bean Supply Days</th>
+                <th>Water Supply Days</th>
+                <th>Bean Order Notify Days</th>
+                <th>Water Order Notify Days</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {sensorData.map((data: UsageData, index: number) => (
+                <tr key={data.coffee_machine_id} style={{ backgroundColor: index % 2 ? '#f2f2f2' : 'white' }}>
+                  <td>{data.coffee_machine_id}</td>
+                  <td>{data.water_supply_level}</td>
+                  <td>{data.total_bean_supply_level}</td>
+                  <td>{data.average_daily_bean_usage}</td>
+                  <td>{data.average_daily_water_usage}</td>
+                  <td>{data.water_supply_order_limit}</td>
+                  <td>{data.bean_supply_order_limit}</td>
+                  <td>{data.bean_supply_days.toFixed(2)}</td>
+                  <td>{data.water_supply_days.toFixed(2)}</td>
+                  <td>{data.bean_order_notify_days.toFixed(2)}</td>
+                  <td>{data.water_order_notify_days.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div >
   )
